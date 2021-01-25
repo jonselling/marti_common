@@ -70,7 +70,15 @@ namespace swri_transform_util
 
   void TransformManager::Initialize(std::shared_ptr<tf2_ros::Buffer> tf_buffer)
   {
+    if ( !tf_buffer )
+    {
+      RCLCPP_ERROR( node_->get_logger(), "[transform_manager]: Buffer must be created to initialize" );
+      return;
+    }
+
     tf_buffer_ = tf_buffer;
+
+    tf_listener_ = std::make_shared<tf2_ros::TransformListener>( *tf_buffer_, node_, false );
 
     local_xy_util_ = std::make_shared<LocalXyWgs84Util>(node_);
 

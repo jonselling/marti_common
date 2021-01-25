@@ -251,6 +251,7 @@ namespace swri_transform_util
   private:
     rclcpp::Node::SharedPtr node_;
     std::shared_ptr<tf2_ros::Buffer> tf_buffer_;
+    std::shared_ptr<tf2_ros::TransformListener> tf_listener_;
 
     LocalXyWgs84UtilPtr local_xy_util_;
 
